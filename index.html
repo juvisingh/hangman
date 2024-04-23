@@ -7,11 +7,26 @@
     <link rel='stylesheet' href="./css/styles.css">
 </head>
 <body>
-    <h1>Hangman</h1>
-    <div id="word-container"></div>
-    <div id="guess-container" class="guessed-letters"></div>
-    <div id="remaining-guesses"></div>
-    <button id="reset-button">Reset Button</button>
+    <center>
+    <div class="game">
+        <div class="right-side">
+            <div class="otherside" onclick="startListening()">
+                <h1 style="font-size:5vw">Hangman</h1>
+                <div id="remaining-guesses" style="padding-bottom:4vh;font-size: 1.8vw;"></div>
+                <div style="font-size: 1.8vw;">Guessed Letters:</div>
+                <div id="guess-container" class="guessed-letters" style="font-size:1.3vw; padding-bottom:4vh"></div>
+                <div id="word-container"></div>
+                <div style="padding-top: 6vh; font-size:1.2vw; text-decoration:underline;">Work Place</div>
+                <div id="wordplace"></div>
+            </div>
+            <div><input type="text" name="words" id="workPlace" onclick="stopListening()"></div>
+            <button id="reset-button" class="Btn">Reset Button</button>
+        </div>
+        <div class="left-side">
+            <div id="countUp">0:00</div>
+        </div>
+    </div>
+    </center>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
