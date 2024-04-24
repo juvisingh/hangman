@@ -133,4 +133,5 @@ $("#workPlace").on("keydown",function search(e) {
 });
 function refreshPage(){
     window.location.reload();
+    document.getElementById("hangmanImg").src = "full (1).png"
 } 
