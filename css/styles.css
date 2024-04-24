@@ -36,10 +36,15 @@ body .guessed-letters {
   grid-row: first/end;
 }
 
+.left-side {
+  grid-column: f/s;
+  grid-row: first/end;
+}
+
 .Btn {
   position: relative;
-  width: 150px;
-  height: 55px;
+  width: 17vw;
+  height: 6vh;
   border-radius: 45px;
   border: none;
   background-color: #acbfa4;
@@ -52,7 +57,7 @@ body .guessed-letters {
 }
 
 .Btn::before {
-  width: 70%;
+  width: 30%;
   height: 2px;
   position: absolute;
   background-color: #acbfa4;
@@ -75,6 +80,7 @@ body .guessed-letters {
 
 .Btn:hover {
   animation: jello-horizontal 0.9s both;
+  color: black;
 }
 
 @keyframes jello-horizontal {
@@ -99,4 +105,9 @@ body .guessed-letters {
   100% {
     transform: scale3d(1, 1, 1);
   }
+}
+#hangmanImg {
+  scale: 0.7;
+  width: none;
+  height: none;
 }/*# sourceMappingURL=styles.css.map */

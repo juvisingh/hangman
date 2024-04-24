@@ -5,10 +5,11 @@ var words = ['banana', 'rocket', 'guitar', 'planet', 'orange', 'window', 'bridge
 var seconds = 0;
 var minutes = 0;
 var playing = true;
+var wrongGuess = 1;
 //Chose random word using index
 var chosenWord = words[Math.floor(Math.random() * words.length)]
 var guessedLetters = []
-var remainingGuesses = 6
+var remainingGuesses = 4
 //Display underscores for each letter of the chosen word
 for(var i=0; i < chosenWord.length; i++) {
     $('#word-container').append('<div class="hidden-letter" style="font-size:30px;">_</div>')
@@ -25,6 +26,21 @@ function checkGuess(letter){
     if(chosenWord.indexOf(letter) === -1){
         remainingGuesses--
         $('#remaining-guesses').text("Remaining Guesses: " + remainingGuesses)
+        if (wrongGuess == 1) {
+            document.getElementById("hangmanImg").src = "full1.png"
+            wrongGuess++
+        }
+        else if (wrongGuess == 2) {
+            document.getElementById("hangmanImg").src = "full2.png"
+            wrongGuess++
+        }
+        else if (wrongGuess == 3) {
+            document.getElementById("hangmanImg").src = "full3.png"
+            wrongGuess++
+        }
+        else if (wrongGuess == 4) {
+            document.getElementById("hangmanImg").src = "full4.png"
+        }
     }else {
         //Reveal the guessed letter
         $('.hidden-letter').each(function(index){
@@ -51,9 +67,11 @@ function checkGameStatus() {
 //Function to reset the game
 function resetGame(){
     guessedLetters = []
-    remainingGuesses = 6
+    remainingGuesses = 4
     minutes = 0
     seconds = 0
+    count = 0
+    wrongGuess = 0
     document.getElementById("workPlace").value = ""
     $('#remaining-guesses').text("Remaining Guesses: " + remainingGuesses)
     $('#word-container').empty()
@@ -61,6 +79,7 @@ function resetGame(){
     for(var i=0; i < chosenWord.length; i++) {
         $('#word-container').append('<div class="hidden-letter">_</div>')
     }
+    $('#wordplace').text("")
     updateGuesses()
 }
 $(document).keypress(function(event){
@@ -101,3 +120,17 @@ function startListening() {
     playing = true;
 }
 //Event handler for key presses
+var wordBank = []
+var count = 0
+$("#workPlace").on("keydown",function search(e) {
+    if (count != 3) {
+        if(e.keyCode == 13) {
+            wordBank.push($(this).val())
+            $('#wordplace').append('<h4>' + $(this).val() + '</h4>')
+            count++
+        }
+    }
+});
+function refreshPage(){
+    window.location.reload();
+} 

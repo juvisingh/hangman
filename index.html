@@ -9,9 +9,13 @@
 <body>
     <center>
     <div class="game">
+        <div class="left-side" style="display: flex; justify-content:center">
+            <img src="./full (1).png" id="hangmanImg">
+        </div>
         <div class="right-side">
             <div class="otherside" onclick="startListening()">
                 <h1 style="font-size:5vw">Hangman</h1>
+                <div id="rightword"></div>
                 <div id="remaining-guesses" style="padding-bottom:4vh;font-size: 1.8vw;"></div>
                 <div style="font-size: 1.8vw;">Guessed Letters:</div>
                 <div id="guess-container" class="guessed-letters" style="font-size:1.3vw; padding-bottom:4vh"></div>
@@ -19,11 +23,13 @@
                 <div style="padding-top: 6vh; font-size:1.2vw; text-decoration:underline;">Work Place</div>
                 <div id="wordplace"></div>
             </div>
-            <div><input type="text" name="words" id="workPlace" onclick="stopListening()"></div>
-            <button id="reset-button" class="Btn">Reset Button</button>
-        </div>
-        <div class="left-side">
-            <div id="countUp">0:00</div>
+            <div style="padding-top: 1vh;"><input type="text" name="words" id="workPlace" onclick="stopListening()"></div>
+            <div style="padding-top:1vh">
+                <button id="reset-button" class="Btn" onClick="refreshPage()">Reset Button</button>
+            </div>
+            <div class="left-side" style="padding-top: 2vh;">
+                <div id="countUp">0:00</div>
+            </div>
         </div>
     </div>
     </center>
