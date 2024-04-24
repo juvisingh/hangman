@@ -21,11 +21,16 @@ function updateGuesses(){
     $('#guess-container').text(guessedLetters.join(', '))
 }
 
+function textNormal() {
+    document.getElementById('title').style.color = 'black'
+    document.getElementById('title').innerText = "Hangman"
+}
 //Function to check if the guess letter is in the chosen word
 function checkGuess(letter){
     if(chosenWord.indexOf(letter) === -1){
         remainingGuesses--
         $('#remaining-guesses').text("Remaining Guesses: " + remainingGuesses)
+        //updates the hang man picture for the user
         if (wrongGuess == 1) {
             document.getElementById("hangmanImg").src = "full1.png"
             wrongGuess++
@@ -41,6 +46,9 @@ function checkGuess(letter){
         else if (wrongGuess == 4) {
             document.getElementById("hangmanImg").src = "full4.png"
         }
+        document.getElementById('title').style.color = 'red'
+        document.getElementById('title').innerText = "Wrong"
+        setInterval(textNormal, 5000)
     }else {
         //Reveal the guessed letter
         $('.hidden-letter').each(function(index){
@@ -48,6 +56,9 @@ function checkGuess(letter){
                 $(this).text(letter)
             }
         })
+        document.getElementById('title').style.color = 'green'
+        document.getElementById('title').innerText = "Correct"
+        setInterval(textNormal, 5000)
     }
     updateGuesses()
     checkGameStatus()
@@ -56,16 +67,25 @@ function checkGuess(letter){
 //Function to check if the game has been won or lost
 function checkGameStatus() {
     if($('.hidden-letter:contains("_")').length === 0) {
-        alert('Congratulations, You Won')
-        resetGame()
+        document.getElementById('title').innerText = "You Won!"
+        document.getElementById('remaining-guesses').innerHTML = "<h4>Congratulations</h4>"
+        document.getElementById('word-container').style.color = "red"
+        document.getElementById('title').style.color = "red"
+        playing = false
+        clearInterval(timer)
     }else if(remainingGuesses === 0){
-        alert('You suck, the world was: ' + chosenWord)
-        resetGame()
+        document.getElementById('title').innerText = "You Lost."
+        document.getElementById('remaining-guesses').innerHTML = "<h4>The right word was " + chosenWord + "</h4>"
+        document.getElementById('remaining-guesses').style.color = "red"
+        document.getElementById('title').style.color = "red"
+        playing = false
+        clearInterval(timer)
     }
 }
 
 //Function to reset the game
 function resetGame(){
+    refreshPage()
     guessedLetters = []
     remainingGuesses = 4
     minutes = 0
@@ -110,8 +130,11 @@ function getTime() {
     var finalTime = minutes + ':' + (seconds < 10 ? '0' : '')  + seconds;
     document.getElementById('countUp').innerHTML = finalTime;
 }
+
+//interval for the timer to start updating every second
 var timer = setInterval(getTime,1000)
 
+// Function to stop listening for keypress events
 function stopListening() {
     playing = false;
 }
@@ -119,18 +142,22 @@ function stopListening() {
 function startListening() {
     playing = true;
 }
-//Event handler for key presses
+//Event handler for enter key when the user uses the word bank
 var wordBank = []
 var count = 0
 $("#workPlace").on("keydown",function search(e) {
     if (count != 3) {
         if(e.keyCode == 13) {
+            //gets the value from the input box
             wordBank.push($(this).val())
+            //places the value on the screen for the user to use when they click enter
             $('#wordplace').append('<h4>' + $(this).val() + '</h4>')
+            //increases the count by 1, only allows for max of 3 words in the work place area
             count++
         }
     }
 });
+//function to refresh the page back to normal, used in the reset button
 function refreshPage(){
     window.location.reload();
     document.getElementById("hangmanImg").src = "full (1).png"

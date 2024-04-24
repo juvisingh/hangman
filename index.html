@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman</title>
     <link rel='stylesheet' href="./css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon-32x32.png">
 </head>
-<body>
+<body style="display: flex; justify-content:center; align-items:center; padding-top:4vh;">
     <center>
     <div class="game">
-        <div class="left-side" style="display: flex; justify-content:center">
+        <!--on click is for when the user clicks off of the work place area to return back to the game-->
+        <div class="left-side" style="display: flex; justify-content:center" onclick="startListening()">
             <img src="./full (1).png" id="hangmanImg">
         </div>
         <div class="right-side">
             <div class="otherside" onclick="startListening()">
-                <h1 style="font-size:5vw">Hangman</h1>
+                <h1 style="font-size:5vw" id="title">Hangman</h1>
                 <div id="rightword"></div>
                 <div id="remaining-guesses" style="padding-bottom:4vh;font-size: 1.8vw;"></div>
                 <div style="font-size: 1.8vw;">Guessed Letters:</div>
@@ -23,11 +25,12 @@
                 <div style="padding-top: 6vh; font-size:1.2vw; text-decoration:underline;">Work Place</div>
                 <div id="wordplace"></div>
             </div>
-            <div style="padding-top: 1vh;"><input type="text" name="words" id="workPlace" onclick="stopListening()"></div>
+            <div style="padding-top: 1vh;"><input type="text" name="words" id="workPlace" onclick="stopListening()" style="border-radius: 5px; border-color:#acbfa4;"></div>
             <div style="padding-top:1vh">
                 <button id="reset-button" class="Btn" onClick="refreshPage()">Reset Button</button>
             </div>
-            <div class="left-side" style="padding-top: 2vh;">
+            <!--time that counts upwards-->
+            <div class="left-side" style="padding-top: 2vh; font-size:1vw">
                 <div id="countUp">0:00</div>
             </div>
         </div>

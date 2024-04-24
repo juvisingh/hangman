@@ -26,10 +26,7 @@ body {
     grid-template-columns: [f] 50% [s] 50% [end];
     grid-template-rows: [first] auto [end];
     background-color: $secondary-color;
-    // align-items: center;
     justify-content: center;
-    // align-content: center;
-    // justify-items: center;
     width: 80vw;
     height: 90vh;
     border-radius: 20px;
